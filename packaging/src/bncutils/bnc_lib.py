@@ -203,13 +203,13 @@ def validate_cows_and_bulls(cows_raw, bulls_raw, capacity):
 def validate_your_guess(capacity, input_string):
     errors_dict = {"your_guess": ""}
     if not input_string.isdigit():
-        errors_dict["your_guess"] += "Only digits allowed. "
+        errors_dict["your_guess"] = "Only digits allowed. "
         raise BnCException(errors_dict)
     if len(input_string) != capacity:
         errors_dict["your_guess"] += "Length must be " + str(capacity) + " digits. "
     if len(set(list(input_string))) != len(list(input_string)):
         errors_dict["your_guess"] += "Digits must be unique."
-    if len(errors_dict) > 0:
+    if len(errors_dict["your_guess"]) > 0:
         raise BnCException(errors_dict)
     return True
 
@@ -498,3 +498,6 @@ class BnCException(Exception):
 
     def __str__(self):
         return "{}".format(self.msg)
+
+
+print(get_templates(5, 5, '12345', 5))
